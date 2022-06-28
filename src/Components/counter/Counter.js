@@ -3,11 +3,124 @@ import { useState, useEffect } from "react";
 const Counter = () => {
   const [year, setYear] = useState(1);
   const [month, setMonth] = useState(1);
+  const [monthName, setMonthName] = useState("Зори (январь)");
   const [day, setDay] = useState(1);
   const [weekDay, setWeekDay] = useState("monday");
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [dateInput, setDateInput] = useState("");
+  const [currentWeather, setcurrentWeather] = useState("");
+
+  useEffect(() => {
+    if (day >= 29) {
+      setDay(1);
+      setMonth(month + 1);
+    }
+    if (month >= 13) {
+      setYear(year + 1);
+      setMonth(1);
+    }
+  }, [day, month, year]);
+
+  useEffect(() => {
+    switch (month) {
+      case 1:
+        setMonthName("Зори (январь)");
+        break;
+      case 2:
+        setMonthName("Солнца (февраль)");
+        break;
+      case 3:
+        setMonthName("Вод (март)");
+        break;
+      case 4:
+        setMonthName("Земли (апрель)");
+        break;
+      case 5:
+        setMonthName("Зерна (май)");
+        break;
+      case 6:
+        setMonthName("Равновесия (июнь)");
+        break;
+      case 7:
+        setMonthName("Огня (июль)");
+        break;
+      case 8:
+        setMonthName("Плодородия (август)");
+        break;
+      case 9:
+        setMonthName("Благодати (сентябрь)");
+        break;
+      case 10:
+        setMonthName("Ветров (октябрь)");
+        break;
+      case 11:
+        setMonthName("Холодов (ноябрь)");
+        break;
+      case 12:
+        setMonthName("Тьмы (декабрь)");
+        break;
+      default:
+        break;
+    }
+  }, [month]);
+
+  useEffect(() => {
+    switch (day) {
+      case 1:
+      case 8:
+      case 15:
+      case 22:
+        setWeekDay("понедельник");
+        alert("Наступил понедельник");
+        break;
+      case 2:
+      case 9:
+      case 16:
+      case 23:
+        setWeekDay("вторник");
+        alert("Наступил вторник");
+        break;
+      case 3:
+      case 10:
+      case 17:
+      case 24:
+        setWeekDay("среда");
+        alert("Наступила среда");
+        break;
+      case 4:
+      case 11:
+      case 18:
+      case 25:
+        setWeekDay("четверг");
+        alert("Наступил четверг");
+        break;
+      case 5:
+      case 12:
+      case 19:
+      case 26:
+        setWeekDay("пятница");
+        alert("Наступила пятница");
+        break;
+      case 6:
+      case 13:
+      case 20:
+      case 27:
+        setWeekDay("суббота");
+        alert("Наступила суббота");
+        break;
+      case 7:
+      case 14:
+      case 21:
+      case 28:
+        setWeekDay("воскресенье");
+        alert("Наступило воскресенье");
+        break;
+
+      default:
+        break;
+    }
+  }, [day]);
 
   const reset = () => {
     setHours(0);
@@ -20,6 +133,7 @@ const Counter = () => {
     }
     if (value + hours >= 24) {
       setHours(value + hours - 24);
+      setDay(day + 1);
     }
   };
 
@@ -33,39 +147,37 @@ const Counter = () => {
     }
   };
 
-  const dateChange = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const arr = dateInput.split(".");
-    // const newArr = [];
-    // for (let el of arr) {
-    //   newArr.push(Number(el));
-    // }
-    // setDay(newArr[0]);
-    // setMonth(newArr[1]);
-    // setYear(newArr[2]);
-    // setHours(newArr[3]);
-    // setMinutes(newArr[4]);
+    const arr = dateInput.split(".");
+    const newArr = [];
+    for (let el of arr) {
+      newArr.push(Number(el));
+    }
+    setDay(newArr[0]);
+    setMonth(newArr[1]);
+    setYear(newArr[2]);
+    setHours(newArr[3]);
+    setMinutes(newArr[4]);
+
+    // 10.10.2020.12.30
   };
 
   return (
     <>
-      <p>Год: {year}</p>
-      <p>Месяц {month}</p>
+      <p>{year} Год</p>
+      <p>
+        {month} Месяц {monthName}
+      </p>
       <p>
         {day} день, {weekDay}
       </p>
+      <br />
       <p>
         Дата:{day}.{month}.{year}
       </p>
-      <p>
-        {hours}:{minutes}
-      </p>
-      <form
-        onSubmit={() => {
-          dateChange();
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <label htmlFor="">Change date</label>
         <br />
         <input
@@ -75,22 +187,52 @@ const Counter = () => {
           onChange={(e) => setDateInput(e.target.value)}
           required
         ></input>
-        <button type="button">APPLY</button>
+        <button type="submit">APPLY</button>
       </form>
-
+      <br />
+      <p>
+        {hours}:{minutes}
+      </p>
       <button onClick={() => incrementMinutes(1)}>+1 min</button>
       <button onClick={() => incrementMinutes(2)}>+2 min </button>
       <button onClick={() => incrementMinutes(5)}>+5 min</button>
       <button onClick={() => incrementMinutes(10)}>+10 min</button>
       <button onClick={() => incrementMinutes(15)}>+15 min</button>
       <button onClick={() => incrementMinutes(30)}>+30 min</button>
+      <br />
       <button onClick={() => incrementHours(1)}>+1 hour</button>
       <button onClick={() => incrementHours(2)}>+2 hours</button>
       <button onClick={() => incrementHours(3)}>+3 hours</button>
       <button onClick={() => incrementHours(6)}>+6 hours</button>
       <button onClick={() => incrementHours(12)}>+12 hours</button>
       <button onClick={() => incrementHours(24)}>+24 hours</button>
+      <br />
       <button onClick={() => reset()}>RESET</button>
+      <br />
+      <br />
+      <button>add player</button>
+      <ul>
+        <li>
+          <label className="Name">Leo</label>
+          <ul className="Effects"></ul>
+          <button className="Sleep"></button>
+          <button className="Unactive"></button>
+          <p className="HP"></p>
+          <p className="OM"></p>
+          <p className="SN"></p>
+          <p className="ST"></p>
+          <p className="PArm"></p>
+          <p className="MArm"></p>
+          <p className="Fatigue"></p>
+          <button className="FreezeFatigue"></button>
+          <p className="Thirst"></p>
+          <button className="FreezeThirst"></button>
+          <p className="Hunger"></p>
+          <button className="FreezeHunger"></button>
+        </li>
+        <li>Jake</li>
+        <li>Iuda</li>
+      </ul>
     </>
   );
 };
