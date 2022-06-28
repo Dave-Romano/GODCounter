@@ -1,6 +1,6 @@
 import { createArray } from "../helpers/index";
 
-const stateProto = {
+export const stateProto = {
   counter: {
     minutes: 0,
     hours: 0,

@@ -1,9 +1,12 @@
 /* styles */
+
 ul,
 ol {
   padding: 0;
 }
 
+form,
+input,
 body,
 h1,
 h2,
@@ -15,13 +18,13 @@ p,
 ul,
 ol,
 li {
+  font-family: "Kelly Slab", cursive;
   margin: 0;
 }
 
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
-  font-family: "Teko", sans-serif;
   background-color: gray;
   margin-left: 15px;
   margin-right: 15px;
@@ -40,5 +43,5 @@ ul {
   list-style-type: none;
 }
 button {
-  font-family: Teko;
+  font-family: "Kelly Slab", cursive;
 }
