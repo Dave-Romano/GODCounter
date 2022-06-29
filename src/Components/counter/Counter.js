@@ -1,5 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
+
+// ++1. Сохранение данных в local Storage
+// 2. Прописать карточку игрока
+// 3. Добавить эффекты
+// 4. Добавить погоду
+// 5. Разбить всё на компоненты
+// 6. Сделать код адекватным
+
 const Counter = () => {
   const [year, setYear] = useState(1);
   const [month, setMonth] = useState(1);
@@ -12,6 +20,19 @@ const Counter = () => {
   const [currentWeather, setcurrentWeather] = useState("");
 
   useEffect(() => {
+    const parsedYear = JSON.parse(localStorage.getItem("year"));
+    const parsedMonth = JSON.parse(localStorage.getItem("month"));
+    const parsedDay = JSON.parse(localStorage.getItem("day"));
+    const parsedHour = JSON.parse(localStorage.getItem("hour"));
+    const parsedMinute = JSON.parse(localStorage.getItem("minute"));
+    setYear(parsedYear);
+    setMonth(parsedMonth);
+    setDay(parsedDay);
+    setHours(parsedHour);
+    setMinutes(parsedMinute);
+  }, []);
+
+  useEffect(() => {
     if (day >= 29) {
       setDay(1);
       setMonth(month + 1);
@@ -20,7 +41,13 @@ const Counter = () => {
       setYear(year + 1);
       setMonth(1);
     }
-  }, [day, month, year]);
+
+    localStorage.setItem("day", JSON.stringify(day));
+    localStorage.setItem("month", JSON.stringify(month));
+    localStorage.setItem("year", JSON.stringify(year));
+    localStorage.setItem("hour", JSON.stringify(hours));
+    localStorage.setItem("minute", JSON.stringify(minutes));
+  }, [day, month, year, hours, minutes]);
 
   useEffect(() => {
     switch (month) {
@@ -230,8 +257,42 @@ const Counter = () => {
           <p className="Hunger"></p>
           <button className="FreezeHunger"></button>
         </li>
-        <li>Jake</li>
-        <li>Iuda</li>
+        <li>
+          <label className="Name">Jake</label>
+          <ul className="Effects"></ul>
+          <button className="Sleep"></button>
+          <button className="Unactive"></button>
+          <p className="HP"></p>
+          <p className="OM"></p>
+          <p className="SN"></p>
+          <p className="ST"></p>
+          <p className="PArm"></p>
+          <p className="MArm"></p>
+          <p className="Fatigue"></p>
+          <button className="FreezeFatigue"></button>
+          <p className="Thirst"></p>
+          <button className="FreezeThirst"></button>
+          <p className="Hunger"></p>
+          <button className="FreezeHunger"></button>
+        </li>
+        <li>
+          <label className="Name">Iuda</label>
+          <ul className="Effects"></ul>
+          <button className="Sleep"></button>
+          <button className="Unactive"></button>
+          <p className="HP"></p>
+          <p className="OM"></p>
+          <p className="SN"></p>
+          <p className="ST"></p>
+          <p className="PArm"></p>
+          <p className="MArm"></p>
+          <p className="Fatigue"></p>
+          <button className="FreezeFatigue"></button>
+          <p className="Thirst"></p>
+          <button className="FreezeThirst"></button>
+          <p className="Hunger"></p>
+          <button className="FreezeHunger"></button>
+        </li>
       </ul>
     </>
   );
