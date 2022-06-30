@@ -1,6 +1,12 @@
 import { createArray } from "../helpers/index";
+import { allWeekDays } from "./allWeekDays";
+import { allMonths } from "./allMonths";
+import { timeValues } from "./timeValues";
 
-export const stateProto = {
+export const appConfig = {
+  allWeekDays,
+  allMonths,
+  timeValues,
   counter: {
     minutes: 0,
     hours: 0,
@@ -36,30 +42,19 @@ export const stateProto = {
   },
 };
 
-export const allmonths = [
-  "Зори (январь)",
-  "Солнца (февраль)",
-  "Вод (март)",
-  "Земли (апрель)",
-  "Зерна (май)",
-  "Равновесия (июнь)",
-  "Огня (июль)",
-  "Плодородия (август)",
-  "Благодати (сентябрь)",
-  "Ветров (октябрь)",
-  "Холодов (ноябрь)",
-  "Тьмы (декабрь)",
-];
+// export const minutes = createArray(60);
+// export const hours = createArray(24);
 
-export const allWeekDays = [
-  "понедельник",
-  "вторник",
-  "среда",
-  "четверг",
-  "пятница",
-  "суббота",
-  "воскресенье",
-];
+// const weathers = {
+//   rain: { effects: ["wet"], icon: "icon" },
+//   snow: { rain: { effects: [""], icon: "icon" } },
+// };
 
-export const minutes = createArray(60);
-export const hours = createArray(24);
+// const climat = { savanna: ["rain", "sunny"], tundra: ["snow"] };
+
+// const randomWeather = (climat) => {
+//   const randomW = "rain"
+//   weathers[randomW]
+// }
+
+// randomWeather(climat.savanna)
