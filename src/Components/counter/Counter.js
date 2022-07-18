@@ -30,6 +30,7 @@ const Counter = () => {
         <SetDate />
       </div>
       <TimeOperator />
+      <div></div>
     </CounterStyled>
   );
 };
