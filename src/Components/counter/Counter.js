@@ -1,9 +1,16 @@
 // import React from "react";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { CounterStyled } from "./CounterStyled";
 import Weather from "../common/Weather";
 import SetDate from "./setDate/SetDate";
 import TimeOperator from "./timeOperator/TimeOperator";
+import store from "../../redux/store";
+import { myAction } from "../../redux/actions";
+
+// console.log(store);
+
+console.log("myStore.getState:", store.getState());
+console.log("myStore.dispatch(myAction):", store.dispatch(myAction));
 
 // // ++1. Сохранение данных в local Storage
 // // 2. Прописать карточку игрока

@@ -6,4 +6,4 @@ export const createArray = (beforeNumber) => {
   return result;
 };
 
-console.log(createArray(60));
+// console.log(createArray(60));
