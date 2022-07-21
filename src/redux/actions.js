@@ -10,8 +10,8 @@ export const myAction2 = (value) => ({
 
 export const myAction3 = (value) => {
   return {
-    type: "MY_ACTION2",
-    payload: "super payload2",
+    type: "MY_ACTION3",
+    payload: "super payload3",
   };
 };
 

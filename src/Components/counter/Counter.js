@@ -7,6 +7,8 @@ import TimeOperator from "./timeOperator/TimeOperator";
 import store from "../../redux/store";
 import { myAction } from "../../redux/actions";
 
+import { connect } from "react-redux";
+
 // console.log(store);
 
 console.log("myStore.getState:", store.getState());
@@ -42,7 +44,7 @@ const Counter = () => {
   );
 };
 
-export default Counter;
+export default connect()(Counter);
 
 // const Counter = () => {
 //   const [year, setYear] = useState(1);
